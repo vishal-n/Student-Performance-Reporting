@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Student Report</h2>
+<table>
+  <col width="150">
+  <col width="50">
+  <tr>
+      <th>Semester</th>
+      <th>GPA</th>
+  </tr>
+  {% for score in scores %}
+    <tr>
+      <td>{{ score.semester }}</td>
+      <td>{{ score.score }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<br>
+<br>
+
+
+<table>
+  <tr>
+      <th>CGPA </th>
+      <th>Learner Category</th>
+  </tr>
+  <tr>
+    <td>{{ cgpa }}</td>
+    <td>{{ category }} </td>
+  </tr>
+</table>
+
+<br>
+
+Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a>
+{% endif %}
+
+</body>
+</html>
+{% endblock %}
+

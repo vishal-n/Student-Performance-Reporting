@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Student Report</h2>
+
+<table>
+  <tr>
+    <th>I Semester</th>
+    <th>II Semester</th>
+    <th>III Semester</th>
+    <th>IV Semester</th>
+    <th>V Semester</th>
+    <th>VI Semester</th>
+    <th>VII Semester</th>
+    <th>VIII Semester</th>
+    <th>CGPA</th>
+    <th>Learner Category</th>
+  </tr>
+  <tr>
+    <td>6.0</td>
+    <td>7.0</td>
+    <td>7.8</td>
+    <td>7.0</td>
+    <td>7.0</td>
+    <td>6.0</td>
+    <td>6.0</td>
+    <td>6.0</td>
+    <td>6.0</td>
+    <td>Slow Learner</td>
+  </tr>
+</table>
+
+</body>
+</html>
+<!-- end document-->
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a>
+{% endif %}
+{% endblock %}
+
